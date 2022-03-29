@@ -12,17 +12,18 @@ public class DbUtils {
     QueryRunner runner = new QueryRunner();
 
 
-    public void getUser() {
-        var loginSQL = "SELECT * FROM users;";
+    public User getUser() {
+        var dataSQL = "SELECT * FROM users;";
 
+        User user = null;
         try (
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")
         ) {
-            User first = runner.query(conn, loginSQL, new BeanHandler<>(User.class));
+            user = runner.query(conn, dataSQL, new BeanHandler<>(User.class));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return user;
     }
 
 
