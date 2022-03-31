@@ -11,8 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.20'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.8.2'
     testImplementation 'mysql:mysql-connector-java:8.0.22'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'com.codeborne:selenide:5.19.0'
