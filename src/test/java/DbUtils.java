@@ -45,7 +45,7 @@ public class DbUtils {
             e.printStackTrace();
         }
 
-        String codeSQL = "SELECT code FROM auth_codes WHERE user_id =" + id + " ORDER BY id DESC;";
+        String codeSQL = "SELECT code FROM auth_codes WHERE user_id ='" + id + "'ORDER BY created DESC;";
 
 
         String code = null;
