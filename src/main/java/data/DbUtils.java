@@ -1,8 +1,7 @@
+package data;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,31 +11,10 @@ import java.sql.SQLException;
 public class DbUtils {
     QueryRunner runner = new QueryRunner();
 
+    public static String getVerificationCode() {
+        QueryRunner runner = new QueryRunner();
 
-    public User getUser() {
-
-        String userSQL = "SELECT * FROM users;";
-
-        User user = null;
-        try (
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")
-        ) {
-            user = runner.query(conn, userSQL, new BeanHandler<>(User.class));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return user;
-    }
-
-    public String getPasswordByLogin() {
-        String password = "123qwerty";
-
-        return password;
-    }
-
-
-    public String getVerificationCode() {
-        String idSQL = "SELECT id FROM users WHERE login = 'petya';";
+        String idSQL = "SELECT id FROM users WHERE login = 'vasya';";
 
         String id = null;
         try (
@@ -63,5 +41,24 @@ public class DbUtils {
     }
 
 
+    public void clean() {
+        QueryRunner runner = new QueryRunner();
+
+        var codesSQL = "DELETE * FROM auth_codes;";
+        var usersSQL = "DELETE * FROM users";
+
+        try (
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")
+        ) {
+            runner.update(conn, codesSQL);
+            runner.update(conn, usersSQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
+
+
 
