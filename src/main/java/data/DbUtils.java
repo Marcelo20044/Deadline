@@ -44,13 +44,15 @@ public class DbUtils {
     public void clean() {
         QueryRunner runner = new QueryRunner();
 
-        var codesSQL = "DELETE * FROM auth_codes;";
-        var usersSQL = "DELETE * FROM users";
+        var codesSQL = "DELETE FROM auth_codes WHERE TRUE;";
+        var cardsSQL = "DELETE FROM cards WHERE TRUE;";
+        var usersSQL = "DELETE FROM users WHERE TRUE;";
 
         try (
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")
         ) {
             runner.update(conn, codesSQL);
+            runner.update(conn, cardsSQL);
             runner.update(conn, usersSQL);
         } catch (SQLException e) {
             e.printStackTrace();

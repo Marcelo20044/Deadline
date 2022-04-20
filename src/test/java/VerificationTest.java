@@ -1,14 +1,13 @@
 import com.codeborne.selenide.Configuration;
 import data.DataGenerator;
+import data.DbUtils;
 import lombok.val;
-import org.apache.commons.dbutils.DbUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import page.LoginPage;
-
 import java.util.concurrent.TimeUnit;
-
 import static com.codeborne.selenide.Selenide.open;
+
 
 public class VerificationTest {
 
